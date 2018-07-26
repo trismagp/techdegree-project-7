@@ -1,0 +1,15 @@
+div.app--tweet
+  form(action="/tweets" method="POST")
+    div.circle--fluid
+      div(class="circle--fluid--cell circle--fluid--primary align-bottom app--tweet--post")
+        div(class="app--avatar" style=`background-image: url("${myProfileImage}")`)
+          img(src="images/m-spore.png")
+        textarea(class="circle--textarea--input" placeholder="What's happening?" id="tweet-textarea" name="tweetTextarea")
+        strong(class="app--tweet--char" id="tweet-char") 140
+      
+      div(class="circle--fluid--cell align-bottom")
+        button(class="button-primary" type="submit") Tweet
+
+
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+script(src='./js/script.js')

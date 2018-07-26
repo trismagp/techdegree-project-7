@@ -1,0 +1,47 @@
+doctype html
+html(lang="en")
+  head         
+    meta(charset="utf-8")
+    title Twitter Client
+    //- Mobile Specific Metas  ––––––––––––––––––––––––––––––––––––––––––––––––––
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    //- FONTS ––––––––––––––––––––––––––––––––––––––––––––––––––
+    link(href='https://fonts.googleapis.com/css?family=Work+Sans:400,600', rel='stylesheet', type='text/css')
+     //- CSS ––––––––––––––––––––––––––––––––––––––––––––––––––
+    link(rel='stylesheet', href='css/global.css')
+
+
+  body
+    include includes/header.pug
+    include includes/tweet-form.pug
+    .bounds.app--body
+      .app--section--header
+        .grid-33
+          .app--section--heading
+            h2 Timeline
+    
+        .grid-33
+          .app--section--heading
+            strong= nbFriends
+            h2 Following
+    
+        .grid-33
+          .app--section--heading
+            h2 Direct Messages
+          
+      .grid-33
+        .app--section
+          ul.app--tweet--list
+            block content-timeline
+      
+      .grid-33
+        .app--section
+          ul.app--user--list
+            block content-followers
+                    
+      .grid-33
+        .app--section
+          ul.app--message--list
+            block content-direct-messages
+
+    

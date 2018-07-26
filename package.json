@@ -1,0 +1,17 @@
+{
+  "name": "techdegree-project-7",
+  "version": "1.0.0",
+  "description": "tweeter app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dateformat": "^3.0.3",
+    "express": "^4.16.3",
+    "pug": "^2.0.3",
+    "twit": "^2.2.11"
+  }
+}
