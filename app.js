@@ -10,13 +10,15 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine','pug');
 
 // root route
-app.get('/',(req, res) =>{
+app.get('/',(req, res,next) =>{
     twitter.authenticate();
-    twitter.verifyCredentials(res);
+    twitter.verifyCredentials();
+    
     setTimeout(function(){
                   let err = twitter.getAppError();
                   if(err){
-                    res.render('error',{err} )
+                    err.status = err.statusCode;
+                    next(err);
                   }else{
                     res.render('index', {
                       timeline:       twitter.getTimeline(),
@@ -40,10 +42,18 @@ app.post('/tweets', (req,res) =>{
 
 // if url not found
 app.use((req,res,next) =>{
-  const err = new Error('Url not found');
-  err.statusCode = 404;
-  res.render('error',{err});
+  const err = new Error('Not found');
+  err.status = 404;
+  next(err);
 })
+
+// error handler
+app.use((err, req, res, next) => {
+  res.locals.error = err;
+  res.status(err.status);
+  res.render('error');
+})
+
 
 app.listen(PORT, process.env.IP, function(){
   console.log("twitter app server started, listening to port " + PORT );

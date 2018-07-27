@@ -74,10 +74,6 @@ function fetchDirectMessages(){
     if(err){
       setError(err)
     }else{
-      console.log(data.events);
-      data.events.map(dm => {
-        console.log(`${dm.message_create.sender_id} ${dm.message_create.message_data.text}`);
-      });
       const messageSet = [];
       for (var i = 0; i < Math.min(data.events.length, NB_EL_TO_DISPLAY); i++) {
         // var createdAt = parseTwitterDate(parseInt(data.events[i].created_timestamp));  // ==>  twitter date format ==> more cool
@@ -122,8 +118,6 @@ function fetchDmContacts(dmData){
   })
 }
 
-
-
 // get current user personal twitter info and the fetch tweets, followed accounts and direct messsages
 function verifyCredentials(){
   T.get('account/verify_credentials',  function (err, data, response) {
@@ -144,6 +138,7 @@ function verifyCredentials(){
     }
   });
 }
+
 
 // post tweet in current user timeline
 function postTweet(tweet){
